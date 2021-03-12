@@ -1,10 +1,11 @@
 import React, { useState, useReducer } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import reducer from '../reducers'
+import Event from './Event';
+import reducer from '../reducers';
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, []);
+  const [state, dispatch] = useReducer(reducer, []); // []は初期状態
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
@@ -49,6 +50,9 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
+          {state.map((event, index) => (
+            <Event key={index} event={event} dispatch={dispatch} />
+          ))}
         </tbody>
       </table>
     </div>
